@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
+  </head>
+  <body>
+    <div class="row" style="padding-top: 10px;">
+      <div class="menu-left" style="border-right: none; font-size: 26px; font-family: Arial, Helvetica, sans-serif;color: #AF281D; font-weight: bold">THE MOVIE DB</div>
+      <div class="col-3"></div>
+      <div class="col-1 top"></div>
+    </div>
+  <div class="row" style="padding-top:8px;">
+      <div class="menu-left">
+        <div class="row">
+          <div class="col-1"></div>
+          <div style="width: 100px;">
+            <button onclick="homepage();" style="cursor: pointer; outline:none; border: none;background:transparent; border-bottom: 1px white solid;  color:red; width: 100px; height: 59px;" id="homebutton">
+              <div class="home align-center font-size-14">Home &nbsp;&nbsp;&nbsp;&nbsp; &#10230;</div>
+            </button>
+            <button onclick="searchpage();" style="cursor: pointer; outline:none; background:transparent; border: none; border-bottom: none; color:white; width: 100px; height:59px;" id="searchbutton">
+              <div class="search align-center font-size-14" >Search &nbsp;&nbsp; &#10230;</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    
+    <div class="col-1" id="Home">
+      <div class="row" style="padding:20px;">
+        <div class="col-8 text-center">
+          <div class="text-center trend_movie font-size-20 padding-bottom-10">Trending Movies</div>
+          <div id="trend_movie">
+            <div class="lunbo" id = "mv">
+              <div class="lunbotu">
+            
+                <img src="static/movie-placeholder.jpg" height="439" width="780" />
+ 
+              
+              </div>
+             
+   
+            </div>
+          </div>
+          <div style="height: 50px;"></div>
+          <div class="text-center trend_movie font-size-20 padding-bottom-10 ">TV Shows On-Air Today</div>
+          <div id="tVOnAir">
+            <div class="lunbo" id = "tv">
+              <div class="lunbotu">
+            
+                <img src="static/movie-placeholder.jpg" height="439" width="780" />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="col-1"></div>
+      </div>
+      <div style="height: 200px;"></div>
+      
+      <div class="footer-info">
+        <div>Designed and developed by Chenhao Yang </div>
+        <div>Powered by TMDB</div>
+      </div>
+
+    </div>
+    <!--Search page-->
+    <div class="col-8" id="Search" style="display: none;">
+      <div class="row search-page-right" style="padding-left: 10px">
+        <div class="col-1">
+          <div class="row">
+            <div class="col-4" style="padding-top:2px;">
+
+              <div class="search-condition">
+                <div class="text-center padding-20 font-size-22 font-bold">Search</div>
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div style="width: 450px;">
+                    <form method="POST">
+                      <div class="row">
+                        <label for="keyword" style="width: 90px; font-family: Raleway; font-size:16px;">Keyword<span class="search-condition-star">*</span></label>
+                        <div class="col-1">
+                          <input type="text" id="name" style="width: 310px; border-radius: 4px;" />
+                        </div>
+                      </div>
+                      <div class="row margin-top-20">
+                        <label for="category" style="width: 90px; font-family: Raleway;">Category<span class="search-condition-star">*</span></label>
+                        <div class="col-1">
+                          <select id="category" style="border-radius: 4px; height:22px;">
+                            <option value=""></option>
+                            <option value="movie">Movies</option>
+                            <option value="tv">TV Shows </option>
+                            <option value="multi">Movies and TV Shows</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row margin-top-20">
+                        <div class="col-2"></div>
+                        <div class="col-1">
+                          <div class="btn btn-search" onclick="search()">Search</div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-1">
+                          <div class="btn btn-clear" onclick="clearValue()">Clear</div>
+                        </div>
+                        <div class="col-1"></div>
+                      </div>
+                      <div class="row"></div>
+                    </div>
+                  </form>
+
+
+                  <div class="col-1"></div>
+                  <div class="col-1"></div>
+                </div>
+
+              </div>
+
+              <div id="search-result" class="search-result">
+              </div>
+
+            </div>
+            <div class="col-1"></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-info">
+        <div>Designed and developed by Chenhao Yang </div>
+        <div>Powered by TMDB</div>
+      </div>
+    </div>
+   </div>
+   
+   <div id="dialog" class="search-detail-dialog" style="display: none;">
+    <div class="row " style="width:100%">
+      <div class="col-1"></div>
+      <div class="col-0 search-detail-dialog-body">
+        <div class="row ">
+          <div class="col-1">
+            <div id="dialogDetail" style="width:785px; padding-left:10px;"> </div>
+          </div>
+          <div class="col-0" style="width: 60px;
+          padding-left: 30px;
+          position: relative;
+          margin-left: 10px;">
+            <div class="close" style="z-index: 100; padding-left: 20px; cursor: pointer;" onclick="closeDialog()"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+
+
+  </body>
+  <script>
+    init();
+   </script>
+</html>
